@@ -13,8 +13,9 @@ knitr::opts_chunk$set(
   fig.path = "README-"
 )
 ```
+![logo](logo.png)
 
-Transform XML Documents with XSLT Stylesheets
+### Transform XML Documents with XSLT Stylesheets
 
 The following functions are implemented:
 
