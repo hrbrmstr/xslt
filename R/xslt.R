@@ -62,7 +62,7 @@ xslt_transform <- function(xml_doc, xslt_doc,
   if (fix_ns) { # bloody xmlns
     i <- 1
     while (str_count(xml_doc, "xmlns") != 0) {
-      doc <- str_replace(xml_doc, "xmlns[:]*", sprintf("XMLNSISEVIL%d", i))
+      xml_doc <- str_replace(xml_doc, "xmlns[:]*", sprintf("XMLNSISEVIL%d", i))
       i <- i + 1
     }
   }
