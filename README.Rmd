@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 ![logo](logo.png)
 
-### Transform XML Documents with XSLT Stylesheets
+### Transform XML Documents with XSLT Stylesheets in R
 
 The following functions are implemented:
 

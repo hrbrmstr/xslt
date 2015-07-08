@@ -1,7 +1,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 ![logo](logo.png)
 
-### Transform XML Documents with XSLT Stylesheets
+### Transform XML Documents with XSLT Stylesheets in R
 
 The following functions are implemented:
 
@@ -42,7 +42,7 @@ library(testthat)
 library(xml2)
 
 date()
-#> [1] "Wed Jul  8 11:27:45 2015"
+#> [1] "Wed Jul  8 11:33:58 2015"
 
 xml_src <- "<test/>"
 xslt_src <- '<xsl:stylesheet version="1.0"
