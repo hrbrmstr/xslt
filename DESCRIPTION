@@ -1,8 +1,13 @@
 Package: xslt
-Title: What the Package Does (one line, title case)
+Title: Transform XML Documents with XSLT Stylesheets
 Version: 0.0.0.9000
 Authors@R: c(person("Bob", "Rudis", email = "bob@rudis.net", role = c("aut", "cre")))
-Description: What the package does (one paragraph).
-Depends: R (>= 3.2.1)
-License: MIT + file LICENSE
-LazyData: true
+Description: Provides a method to apply an XSLT stylesheet to an XML document. Based on
+             the 'xmlwrapp' <http://vslavik.github.io/xmlwrapp/> C++ library.
+Depends: R (>= 3.0.0)
+License: GPL-2
+Suggests: testthat
+LinkingTo: Rcpp
+NeedsCompilation: yes
+SystemRequirements: libxml2, libxslt, libxmlwrapp, libxsltwrapp
+Imports: Rcpp, rvest, xml2, stringr
