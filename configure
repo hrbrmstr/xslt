@@ -1,0 +1,120 @@
+# Use backticks to be bourne compliant
+PKGCONFIG=`command -v pkg-config`
+
+
+PKG_LIBS="PKG_LIBS="
+PKG_CPPFLAGS="PKG_CPPFLAGS=-DNDEBUG -g"
+
+# Custom libxml2 path for compatibility with old XML package
+
+if [ "$LIBXML_INCDIR" ]; then
+  LIBXML_CFLAGS="-I$LIBXML_INCDIR"
+  echo "User specified xml2 headers in $LIBXML_INCDIR."
+elif [ "$PKGCONFIG" ]; then
+  LIBXML_CFLAGS=`pkg-config --cflags libxml-2.0`
+  LIBXML_LIBS=`pkg-config --libs libxml-2.0`
+elif [ -r "/opt/csw/include/libxml2/libxml/parser.h" ]; then
+  LIBXML_CFLAGS="-I/opt/csw/include/libxml2/"
+  LIBXML_LIBS="-L/opt/csw/lib/ -lxml2"
+elif [ -r "/usr/include/libxml2/libxml/parser.h" ]; then
+  LIBXML_CFLAGS="-I/usr/include/libxml2/"
+elif [ -r "/usr/local/include/libxml2/libxml/parser.h" ]; then
+  LIBXML_CFLAGS="-I/usr/local/include/libxml2/"
+fi
+
+if [ "$LIBXML_CFLAGS" ]; then
+  PKG_CPPFLAGS="$PKG_CPPFLAGS $LIBXML_CFLAGS"
+  echo "Found libxml2 in $LIBXML_CFLAGS"
+else
+  echo "Could not find libxml2. Please install libxml2-devel (rpm) or libxml2-dev (deb)."
+  exit 1
+fi
+
+if [ "$LIBXML_LIBS" ]; then
+  PKG_LIBS="$PKG_LIBS $LIBXML_LIBS"
+else
+  PKG_LIBS="$PKG_LIBS -lxml2" >> src/Makevars
+fi
+
+# Custom libxslt path ala legacy Sxslt
+#
+if [ "$XSLT_HOME" ]; then
+  LIBXML_CFLAGS="-I$XSLT_HOME/include"
+  echo "User specified xslt headers in $XSLT_HOME"
+elif [ "$PKGCONFIG" ]; then
+  LIBXSLT_CFLAGS=`pkg-config --cflags libxslt`
+  LIBXSLT_LIBS=`pkg-config --libs libxslt`
+elif [ -r "/usr/include/libxslt/xslt.h" ]; then
+  LIBXML_CFLAGS="-I/usr/include/libxslt/"
+elif [ -r "/usr/local/include/libxslt/xslt.h" ]; then
+  LIBXML_CFLAGS="-I/usr/local/include/libxslt/"
+fi
+
+if [ "$LIBXSLT_CFLAGS" ]; then
+  PKG_CPPFLAGS="$PKG_CPPFLAGS $LIBXSLT_CFLAGS"
+  echo "Found libxslt in $LIBXSLT_CFLAGS"
+else
+  echo "Could not find libxslt. Please install libxslt-devel (rpm) or libxslt-dev (deb)."
+  exit 1
+fi
+
+if [ "$LIBXSLT_LIBS" ]; then
+  PKG_LIBS="$PKG_LIBS $LIBXSLT_LIBS"
+else
+  PKG_LIBS="$PKG_LIBS -lxslt"
+fi
+
+# Custom xmlwrapp path
+
+if [ "$PKGCONFIG" ]; then
+  XMLWRAPP_CFLAGS=`pkg-config --cflags xmlwrapp`
+  XMLWRAPP_LIBS=`pkg-config --libs xmlwrapp`
+elif [ -r "/usr/include/xmlwrapp/xmlwrapp.h.h" ]; then
+  XMLWRAPP_CFLAGS="-I/usr/include/xmlwrapp/"
+elif [ -r "/usr/local/include/xmlwrapp/xmlwrapp.h" ]; then
+  XMLWRAPP_CFLAGS="-I/usr/local/include/xmlwrapp/"
+fi
+
+if [ "$XMLWRAPP_CFLAGS" ]; then
+  PKG_CPPFLAGS="$PKG_CPPFLAGS $XMLWRAPP_CFLAGS"
+  echo "Found xmlwrapp in $XMLWRAPP_CFLAGS"
+else
+  echo "Could not find xmlwrapp. Please install it from https://github.com/vslavik/xmlwrapp"
+  exit 1
+fi
+
+if [ "$XMLWRAPP_LIBS" ]; then
+  PKG_LIBS="$PKG_LIBS $XMLWRAPP_LIBS"
+else
+  PKG_LIBS="$PKG_LIBS -lxmlwrapp"
+fi
+
+# Custom xsltwrapp path
+
+if [ "$PKGCONFIG" ]; then
+  XSLTWRAPP_CFLAGS=`pkg-config --cflags xsltwrapp`
+  XSLTWRAPP_LIBS=`pkg-config --libs xsltwrapp`
+elif [ -r "/usr/include/xsltwrapp/xsltwrapp.h.h" ]; then
+  XSLTWRAPP_CFLAGS="-I/usr/include/xsltwrapp/"
+elif [ -r "/usr/local/include/xsltwrapp/xsltwrapp.h" ]; then
+  XSLTWRAPP_CFLAGS="-I/usr/local/include/xsltwrapp/"
+fi
+
+if [ "$XSLTWRAPP_CFLAGS" ]; then
+  PKG_CPPFLAGS="$PKG_CPPFLAGS $XSLTWRAPP_CFLAGS"
+  echo "Found xsltwrapp in $XSLTWRAPP_CFLAGS"
+else
+  echo "Could not find xsltwrapp. Please install it from https://github.com/vslavik/xmlwrapp"
+  exit 1
+fi
+
+if [ "$XSLTWRAPP_LIBS" ]; then
+  PKG_LIBS="$PKG_LIBS $XSLTWRAPP_LIBS"
+else
+  PKG_LIBS="$PKG_LIBS -lxsltwrapp"
+fi
+
+echo $PKG_CPPFLAGS > src/Makevars
+echo $PKG_LIBS >> src/Makevars
+
+exit 0

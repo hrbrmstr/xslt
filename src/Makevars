@@ -1,2 +1,2 @@
-PKG_CPPFLAGS=-DNDEBUG -g
-PKG_LIBS=-lxsltwrapp -lxmlwrapp -lxml2 -lxslt
+PKG_CPPFLAGS=-DNDEBUG -g -I/usr/local/Cellar/libxml2/2.9.2/include/libxml2 -I/usr/local/Cellar/libxslt/1.1.28_1/include -I/usr/local/Cellar/libxml2/2.9.2/include/libxml2 -I/usr/local/include -I/usr/local/Cellar/libxml2/2.9.2/include/libxml2 -I/usr/local/include -I/usr/local/Cellar/libxslt/1.1.28_1/include -I/usr/local/Cellar/libxml2/2.9.2/include/libxml2
+PKG_LIBS= -L/usr/local/Cellar/libxml2/2.9.2/lib -lxml2 -L/usr/local/Cellar/libxslt/1.1.28_1/lib -L/usr/local/Cellar/libxml2/2.9.2/lib -lxslt -lxml2 -lz -lpthread -liconv -lm -lxml2 -L/usr/local/lib -L/usr/local/Cellar/libxml2/2.9.2/lib -lxmlwrapp -lxml2 -L/usr/local/lib -L/usr/local/Cellar/libxslt/1.1.28_1/lib -L/usr/local/Cellar/libxml2/2.9.2/lib -L/usr/local/Cellar/libxslt/1.1.28_1/lib -L/usr/local/Cellar/libxml2/2.9.2/lib -lxsltwrapp -lxmlwrapp -lexslt -lxslt -lxml2 -lz -lpthread -liconv -lm -lxslt -lxml2 -lz -lpthread -liconv -lm -lxml2

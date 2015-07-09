@@ -1,0 +1,2 @@
+PKG_CPPFLAGS=-DNDEBUG -g
+PKG_LIBS=-lxsltwrapp -lxmlwrapp -lxml2 -lxslt
