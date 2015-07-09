@@ -2,6 +2,7 @@
 
 export(read_xslt)
 export(xslt_transform)
+import(httr)
 import(rvest)
 import(xml2)
 importFrom(Rcpp,evalCpp)

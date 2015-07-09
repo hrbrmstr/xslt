@@ -14,6 +14,7 @@
 #'         character vector with the transformed document text.
 #' @import rvest
 #' @import xml2
+#' @import httr
 #' @importFrom stringr str_replace str_count
 #' @export
 #' @examples
@@ -47,9 +48,9 @@ xslt_transform <- function(xml_doc, xslt_doc,
     xml_doc <- as.character(xml_doc)
   } else {
     if (is_html) {
-      xml_doc <- as.character(read_html(xml_doc))
+      xml_doc <- as.character(read_html(xml_doc, encoding="UTF-8"))
     } else {
-      xml_doc <- as.character(read_xml(xml_doc))
+      xml_doc <- as.character(read_xml(xml_doc, encoding="UTF-8"))
     }
   }
 
