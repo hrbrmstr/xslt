@@ -72,7 +72,7 @@ xslt_transform <- function(xml_doc, xslt_doc,
 
   xslt_doc <- read_xslt(xslt_doc)
   ns <- xml_ns_rename(xml_ns(xslt_doc), xsl = "xsl")
-  out <- tryCatch(xml_attr(xml_find_one(xslt_doc, "xsl:output", ns), "method"),
+  out <- tryCatch(xml_attr(xml_find_first(xslt_doc, "xsl:output", ns), "method"),
                   error=function(err) { "xml" },
                   finally=function(err) { "xml" })
 
